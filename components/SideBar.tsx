@@ -38,28 +38,28 @@ const SideBar = () => {
       color: 'text-violet-700'
     },
     {
-      href: '/Image',
+      href: '/image',
       id: 3,
       icon: BsImageFill,
       title: 'Image Generator',
       color: 'text-pink-700'
     },
     {
-      href: '/Video',
+      href: '/video',
       id: 4,
       icon: LuVideo,
       title: 'Video Generator',
       color: 'text-orange-700'
     },
     {
-      href: '/Music',
+      href: '/music',
       id: 5,
       icon: LuMusic,
       title: 'Music Generator',
       color: 'text-emerald-700'
     },
     {
-      href: '/Code',
+      href: '/code',
       id: 6,
       icon: LuCode,
       title: 'Code Generator',

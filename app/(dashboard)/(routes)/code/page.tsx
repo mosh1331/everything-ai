@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import React, { useState } from 'react'
 import axios from 'axios'
 import Header from '@/components/Header'
-import { LuMessagesSquare } from 'react-icons/lu'
+import { LuCode, LuMessagesSquare } from 'react-icons/lu'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
@@ -14,8 +14,9 @@ import UserAvatar from '@/components/UserAvatar'
 import BotAvatar from '@/components/BotAvatar'
 import { cn } from '@/lib/utils'
 import Empty from '@/components/Empty'
+import Loader from '@/components/Loader'
 
-const ConversationPage = () => {
+const CodePage = () => {
   const [messages, setMessages] = useState<Array<any>>([])
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -35,7 +36,7 @@ const ConversationPage = () => {
       content: values.prompt
     }
     const newMessage = [...messages, userMessage]
-    const response = await axios.post('/api/conversation', {
+    const response = await axios.post('/api/code', {
       messages: newMessage
     })
     form.reset()
@@ -45,11 +46,11 @@ const ConversationPage = () => {
   return (
     <div className='h-full '>
       <Header
-        title='Conversations'
-        description='Most Powerful chat bot to quench your curiosity'
-        icon={LuMessagesSquare}
-        iconColor='text-violet-700'
-        bgColor='bg-violet-700/10'
+        title='Code Generator'
+        description='Generate code using text'
+        icon={LuCode}
+        iconColor='text-green-700'
+        bgColor='bg-green-700/10'
       />
 
       <div className='px-4 lg:px-8'>
@@ -75,7 +76,7 @@ const ConversationPage = () => {
                 <FormItem className='col-span-12 lg:col-span-10'>
                   <FormControl className='m-0 p-0'>
                     <Input
-                      placeholder='How much distance from earth to moon?'
+                      placeholder='generate a toggle button component in react js'
                       className='border-0 outline-0 focus-visible:ring-0 focus-visible:ring-transparent'
                       disabled={isLoading}
                       {...field}
@@ -93,10 +94,9 @@ const ConversationPage = () => {
           </form>
         </Form>
         <div className='space-y-4 mt-4'>
-          {messages.length === 0 && !isLoading ? (
-            <Empty label={'No conversation started'} />
-          ) : null}
-          <div className='flex flex-col col-span-12 gap-y-4'>
+          {messages.length === 0 && !isLoading ? <Empty label={"No conversation started"} />:null}
+          {isLoading ? <Loader />:null}
+          <div className='flex flex-col col-span-12  gap-y-4'>
             {messages?.map(i => {
               return (
                 <div
@@ -120,4 +120,4 @@ const ConversationPage = () => {
   )
 }
 
-export default ConversationPage
+export default CodePage
