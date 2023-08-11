@@ -15,9 +15,11 @@ import BotAvatar from '@/components/BotAvatar'
 import { cn } from '@/lib/utils'
 import Empty from '@/components/Empty'
 import Loader from '@/components/Loader'
+import { useRouter } from 'next/router'
 
 const CodePage = () => {
   const [messages, setMessages] = useState<Array<any>>([])
+  const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,6 +43,7 @@ const CodePage = () => {
     })
     form.reset()
     setMessages(prev => [...prev, userMessage, response.data])
+    router.reload()
   }
 
   return (

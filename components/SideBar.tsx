@@ -15,6 +15,7 @@ import {
   LuCode,
   LuSettings
 } from 'react-icons/lu'
+import Image from 'next/image'
 
 const monteserrat = Montserrat({
   weight: '600',
@@ -79,7 +80,9 @@ const SideBar = () => {
   return (
     <div className='px-4 py-16 bg-gray-900 h-full text-white '>
       <div className='flex items-center mb-16'>
-        <AiFillGitlab size={30} style={{ color: '#fff' }} />
+        <div className="relative  h-6 w-6">
+          <Image fill src={'/logo.png'} alt={"Image"} />
+        </div>
         <h2 className={cn('text-2xl text-white ml-2', monteserrat.className)}>
           Everything Ai
         </h2>

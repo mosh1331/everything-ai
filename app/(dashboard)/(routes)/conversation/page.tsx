@@ -14,9 +14,11 @@ import UserAvatar from '@/components/UserAvatar'
 import BotAvatar from '@/components/BotAvatar'
 import { cn } from '@/lib/utils'
 import Empty from '@/components/Empty'
+import { useRouter } from 'next/router'
 
 const ConversationPage = () => {
   const [messages, setMessages] = useState<Array<any>>([])
+  const router =useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -40,6 +42,7 @@ const ConversationPage = () => {
     })
     form.reset()
     setMessages(prev => [...prev, userMessage, response.data])
+    router.reload()
   }
 
   return (
